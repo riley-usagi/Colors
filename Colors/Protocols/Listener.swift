@@ -17,6 +17,8 @@ extension Listener {
     
     withObservationTracking {
       UUID().uuidString
+    } willChange: {
+      
     } didChange: {
       if events.contains(EventAspect.shared.value) {
         action()
@@ -29,6 +31,7 @@ extension Listener {
   /// Возможность слушать изменения observable-событий более одного раза
   /// - Parameters:
   ///   - token: Токен статуса
+  ///   - willChange: Замыкание до изменения наблюдаемого параметра
   ///   - didChange: Замыкание при изменении наблюдаемого параметра
   ///   - apply: Замыкание для отслеживания конкретного параметра
   func withObservationTracking(
@@ -43,7 +46,9 @@ extension Listener {
       willChange?()
       
       RunLoop.current.perform {
+        
         didChange()
+        
         withObservationTracking {
           token()
         } didChange: {
