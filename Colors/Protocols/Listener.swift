@@ -33,11 +33,15 @@ extension Listener {
   ///   - apply: Замыкание для отслеживания конкретного параметра
   func withObservationTracking(
     token: @escaping () -> String,
+    willChange: (@Sendable () -> Void)? = nil,
     didChange: @escaping @Sendable () -> Void,
     apply: @escaping () -> Void
   ) {
     Observation.withObservationTracking(apply) {
       guard token() != "" else { return }
+      
+      willChange?()
+      
       RunLoop.current.perform {
         didChange()
         withObservationTracking {
