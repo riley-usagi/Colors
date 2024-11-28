@@ -4,10 +4,13 @@ import SwiftUI
 struct RightScreen: View {
   var body: some View {
     ZStack {
+      Color.green.opacity(0.2)
       RightColorAspect.shared.value
       
       VStack {
-        Text("Right").font(.largeTitle)
+        Text("Right")
+          .shadow(radius: 1)
+          .font(.largeTitle)
           .foregroundColor(
             RightColorAspect.shared.value != .clear ? .white : .black
           )

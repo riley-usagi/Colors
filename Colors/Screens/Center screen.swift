@@ -5,10 +5,15 @@ struct CenterScreen: View {
   var body: some View {
     ZStack {
       
+      Color.teal.opacity(0.2)
       CenterColorAspect.shared.value
       
       VStack {
-        Text("Center").font(.largeTitle).foregroundColor(.white).padding()
+        Text("Center")
+          .shadow(radius: 1)
+          .font(.largeTitle)
+          .foregroundColor(.white)
+          .padding()
         
         Button {
           EventAspect.shared.value = .left

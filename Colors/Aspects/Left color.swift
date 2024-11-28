@@ -7,7 +7,7 @@ import SwiftUI
   static let shared: LeftColorAspect = .init()
   
   private init() {
-    observeEvents(events: [.left, .all]) {
+    observeEvents([.left, .all]) {
       self.value = Color.randomColor()
     }
   }

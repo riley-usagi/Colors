@@ -7,13 +7,13 @@ protocol Listener {
   ///   - events: Список событий, на которе должен реагировать Аспект
   ///   - action: Действие, которое Аспект должен выполнять со своим значением value
   func observeEvents(
-    events: [EventAspect.EventEnum], perform action: @escaping () -> Void
+    _ events: [Event], perform action: @escaping () -> Void
   )
 }
 
 // Базовая реализация для фильтра событий
 extension Listener {
-  func observeEvents(events: [EventAspect.EventEnum], perform action: @escaping () -> Void) {
+  func observeEvents(_ events: [Event], perform action: @escaping () -> Void) {
     
     withObservationTracking {
       UUID().uuidString

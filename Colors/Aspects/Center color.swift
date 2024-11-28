@@ -7,7 +7,7 @@ import SwiftUI
   static let shared: CenterColorAspect = .init()
   
   private init() {
-    observeEvents(events: [.all]) {
+    observeEvents([.all]) {
       self.value = Color.randomColor()
     }
   }
