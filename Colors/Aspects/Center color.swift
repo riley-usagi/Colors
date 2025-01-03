@@ -1,13 +1,13 @@
 import SwiftUI
 
 /// Аспект отвечающий за цвет центрального экрана
-@Observable class CenterColorAspect: Listener {
+@Observable class CenterColorAspect: Observer {
   var value: Color = .clear
   
   static let shared: CenterColorAspect = .init()
   
   private init() {
-    observeEvents([.all]) {
+    observeEvent(.all) {
       self.value = Color.randomColor()
     }
   }

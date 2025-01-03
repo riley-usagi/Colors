@@ -1,13 +1,17 @@
 import SwiftUI
 
 /// Аспект отвечающий за цвет правого экрана
-@Observable class RightColorAspect: Listener {
-  var value: Color = .clear
+@Observable class RightColorAspect: Observer {
+  private(set) var value: Color = .clear
   
   static let shared: RightColorAspect = .init()
   
   private init() {
-    observeEvents([.right, .all]) {
+    observeEvent(.right) {
+      self.value = Color.randomColor()
+    }
+    
+    observeEvent(.all) {
       self.value = Color.randomColor()
     }
   }

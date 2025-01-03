@@ -1,13 +1,17 @@
 import SwiftUI
 
 /// Аспект отвечающий за цвет левого экрана
-@Observable class LeftColorAspect: Listener {
-  var value: Color = .clear
+@Observable class LeftColorAspect: Observer {
+  private(set) var value: Color = .clear
   
   static let shared: LeftColorAspect = .init()
   
   private init() {
-    observeEvents([.left, .all]) {
+    observeEvent(.left) {
+      self.value = Color.randomColor()
+    }
+    
+    observeEvent(.all) {
       self.value = Color.randomColor()
     }
   }
